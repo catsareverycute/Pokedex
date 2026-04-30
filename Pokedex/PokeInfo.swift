@@ -5,6 +5,8 @@
 //  Created by Student on 4/29/26.
 //
 
+
+//POKEINFO UI
 import SwiftUI
 
 struct PokeInfo: View {
