@@ -9,6 +9,9 @@ import SwiftUI
 
 struct ContentView: View {
     @State private var name: String = ""
+    @State private var client = NetworkClient()
+    @State private var animate = false
+    
     var body: some View {
         VStack {
             HStack{
@@ -19,8 +22,44 @@ struct ContentView: View {
                     .textFieldStyle(.roundedBorder)
                     .padding()
             }
+            ZStack {
+                if let url = client.pokemonImageURL {
+                    AsyncImage(url: url) { image in
+                        image.resizable().scaledToFit()
+                    } placeholder: {
+                        ProgressView()
+                    }
+                    .frame(width: 150, height: 150)
+                    .opacity(animate ? 0 : 1)
+                    .offset(x: animate ? CGFloat.random(in: -100...100) : 0)
+                    .offset(y: animate ? CGFloat.random(in: -100...100) : 0)
+                    .onAppear { resetAndStart() }
+                    .onChange(of: client.animationTrigger) { resetAndStart() }
+                }
+                VStack {
+                    Spacer()
+                    Button("Launch Pokemon") {
+                        Task {
+                             await client.getRandomPokemon()
+                         }
+                     }
+                     .onAppear {
+                         Task {
+                             await client.getRandomPokemon()
+                         }
+                     }
+                    }
+                    .buttonStyle(.borderedProminent)
+                    .padding(.bottom, 50)
+                }
+                .frame(maxWidth: .infinity)
+            }
         }
-        .padding()
+    func resetAndStart() {
+        animate = false
+        withAnimation(.linear(duration: 3.0)) {
+            animate = true
+        }
     }
 }
 
