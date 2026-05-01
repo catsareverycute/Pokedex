@@ -13,14 +13,25 @@ struct ContentView: View {
     @State private var animate = false
     
     var body: some View {
-        VStack {
-            HStack{
-                Image(systemName: "magnifyingglass.circle.fill")
-                    .font(.title)
-                    .foregroundStyle(.red)
-                TextField("Pokemon Name", text: $name)
-                    .textFieldStyle(.roundedBorder)
-                    .padding()
+        ZStack{
+            Image(.pokemonBackgrounds)
+                .resizable()
+                .frame(width: .infinity, height: .infinity)
+                .ignoresSafeArea()
+            VStack {
+                Image(.pokemonLogo)
+                    .resizable()
+                    .scaledToFit()
+                HStack{
+                    Image(systemName: "magnifyingglass.circle.fill")
+                        .font(.title)
+                        .foregroundStyle(.red)
+                    TextField("Pokemon Name", text: $name)
+                        .textFieldStyle(.roundedBorder)
+                        .padding()
+                }
+                //Switch between pokeinfo and capture screen
+                PokeInfo()
             }
             ZStack {
                 if let url = client.pokemonImageURL {
