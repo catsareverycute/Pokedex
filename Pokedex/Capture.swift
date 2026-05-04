@@ -6,8 +6,8 @@ struct Capture: View {
     
     var body: some View {
         ZStack {
-            if let url = client.pokemonImageURL {
-                AsyncImage(url: url) { image in
+            if let pokemon = client.currentPokemon {
+                AsyncImage(url: URL(string: pokemon.sprites.front_default)) { image in
                     image.resizable().scaledToFit()
                 } placeholder: {
                     ProgressView()
