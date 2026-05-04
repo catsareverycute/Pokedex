@@ -6,9 +6,20 @@
 //
 
 struct PokemonData: Codable {
+    let name: String
     let sprites: Sprites
+    let types: [TypeElement]
+   
     
     struct Sprites: Codable {
         let front_default: String
+    }
+    
+    struct TypeElement: Codable {
+        let type: Species
+    }
+    
+    struct Species: Codable {
+        let name: String
     }
 }
