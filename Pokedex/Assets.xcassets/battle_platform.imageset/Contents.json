@@ -1,0 +1,21 @@
+{
+  "images" : [
+    {
+      "filename" : "swamp_battle_background_by_kingtrapinch_dg3gmm4-fullview-removebg-preview.png",
+      "idiom" : "universal",
+      "scale" : "1x"
+    },
+    {
+      "idiom" : "universal",
+      "scale" : "2x"
+    },
+    {
+      "idiom" : "universal",
+      "scale" : "3x"
+    }
+  ],
+  "info" : {
+    "author" : "xcode",
+    "version" : 1
+  }
+}
