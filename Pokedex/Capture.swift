@@ -15,12 +15,15 @@ struct Capture: View {
                 .frame(width: 300, height: 300)
                 .onAppear { resetAndStart() }
                 .opacity(animate ? 0 : 1)
-                .offset(x: animate ? CGFloat.random(in: -100...100) : 0)
-                .offset(y: animate ? CGFloat.random(in: -100...100) : 0)
+                .offset(x: Constants.pokemonLoc.x, y: Constants.pokemonLoc.y)
+//                .offset(x: animate ? CGFloat.random(in: -100...100) : 0)
+//                .offset(y: animate ? CGFloat.random(in: -100...100) : 0)
                 .onAppear { resetAndStart() }
                 .onChange(of: client.animationTrigger) { resetAndStart() }
             }
             VStack {
+                Image(.pokeball)
+                    .offset(x: Constants.ballLoc.x, y: Constants.ballLoc.y)
                 Spacer()
                 Button("Launch Pokemon") {
                     Task {
