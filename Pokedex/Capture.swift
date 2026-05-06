@@ -42,20 +42,20 @@ struct Capture: View {
                             withAnimation(.easeInOut(duration: 0.4).delay(0.8)){
                                 ballLoc = CGSize(width: 0, height: 280)
                             }
-                            withAnimation(.easeInOut(duration: 0.3).delay(1.2)){
+                            withAnimation(.easeInOut(duration: 0.5).delay(1.2)){
                                 ballLoc = CGSize(width: 0, height: 150)
                             }
-                            withAnimation(.easeInOut(duration: 0.3).delay(1.5)){
+                            withAnimation(.easeInOut(duration: 0.3).delay(1.7)){
                                 ballLoc = CGSize(width: 0, height: 320)
                             }
-                            withAnimation(.easeInOut(duration: 0.3).delay(1.8)){
+                            withAnimation(.easeInOut(duration: 0.4).delay(2)){
                                 ballLoc = CGSize(width: 0, height: 260)
                                 capturing = true
                             }
-                            withAnimation(.easeInOut(duration: 0.2).delay(2.1)){
+                            withAnimation(.easeInOut(duration: 0.2).delay(2.3)){
                                 ballLoc = CGSize(width: 0, height: 300)
                             }
-                            withAnimation(.easeInOut(duration: 0.3).delay(2.3)){
+                            withAnimation(.easeInOut(duration: 0.4).delay(2.5)){
                                 ballLoc = CGSize(width: 0, height: 400)
                             }
                         }))
