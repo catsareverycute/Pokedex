@@ -23,9 +23,10 @@ struct ContentView: View {
                 HStack{
                     Image(systemName: "magnifyingglass.circle.fill")
                         .font(.title)
-                        .foregroundStyle(.red)
+                        .foregroundStyle(.white, .red)
                     TextField("Pokemon Name", text: $name)
                         .textFieldStyle(.roundedBorder)
+                        .frame(width: 300, height: 50)
                         .padding()
                 }
                 //Switch between pokeinfo and capture screen
