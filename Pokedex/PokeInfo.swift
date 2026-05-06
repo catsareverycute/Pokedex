@@ -31,6 +31,25 @@ struct PokeInfo: View {
                         .clipShape(Capsule())
                 }
             }
+            
+            HStack(spacing: 40) {
+                VStack {
+                    Text("\(pokemon.heightInMeters, specifier: "%.1f")m")
+                        .font(.headline)
+                    Text("Height").font(.caption).foregroundColor(.gray)
+                }
+                VStack {
+                    Text("\(pokemon.weightInKilograms, specifier: "%.1f")kg")
+                        .font(.headline)
+                    Text("Weight").font(.caption).foregroundColor(.gray)
+                }
+                VStack {
+                    Text("\(pokemon.base_experience)")
+                        .font(.headline)
+                    Text("Base XP").font(.caption).foregroundColor(.gray)
+                }
+            }
+            .padding()
         }
     }
 }
@@ -41,6 +60,9 @@ struct PokeInfo: View {
         sprites: .init(front_default: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/25.png"),
         types: [
             .init(type: .init(name: "electric"))
-        ]
+        ],
+        height: 4,
+        weight: 60,
+        base_experience: 112
     ))
 }
