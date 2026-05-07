@@ -1,6 +1,8 @@
 import SwiftUI
 
 struct Capture: View {
+    @Binding var currentScreen: AppScreen
+    var pokedex: PokedexManager
     @State private var client = NetworkClient()
     @State private var animate = false
     @State private var buttonVisible = true
@@ -10,6 +12,21 @@ struct Capture: View {
     
     var body: some View {
         ZStack {
+            VStack {
+                HStack {
+                    Button(action: { currentScreen = .start }) {
+                        Image(systemName: "chevron.left")
+                        Text("Back")
+                    }
+                    .padding()
+                    .background(.ultraThinMaterial)
+                    .cornerRadius(10)
+                    Spacer()
+                }
+                Spacer()
+            }
+            .zIndex(1)
+            
             Image(.battlePlatform)
                 .offset(x: 0, y: 40)
             if let pokemon = client.currentPokemon {
@@ -51,6 +68,10 @@ struct Capture: View {
                             withAnimation(.easeInOut(duration: 0.4).delay(2)){
                                 ballLoc = CGSize(width: 0, height: 260)
                                 capturing = true
+                                
+                                if let caughtPokemon = client.currentPokemon {
+                                    pokedex.caughtPokemon.append(caughtPokemon)
+                                }
                             }
                             withAnimation(.easeInOut(duration: 0.2).delay(2.3)){
                                 ballLoc = CGSize(width: 0, height: 300)
@@ -89,5 +110,5 @@ struct Capture: View {
 }
     
 #Preview {
-    Capture()
+    Capture(currentScreen: .constant(.capture), pokedex: PokedexManager())
 }
