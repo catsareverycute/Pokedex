@@ -33,10 +33,30 @@ struct ContentView: View {
                     Button(action: {currentScreen = .capture}) {
                         Text("Capture Pokemon")
                             .font(.headline)
+                            .fontWeight(.bold)
+                            .foregroundColor(.white)
+                            .frame(width: 240, height: 50)
+                            .background(.ultraThinMaterial)
+                            .cornerRadius(15)
+                            .overlay(
+                                RoundedRectangle(cornerRadius: 15)
+                                    .stroke(Color.white.opacity(0.4), lineWidth: 1)
+                            )
+                            .shadow(radius: 5)
                     }
                     Button(action: {currentScreen = .pokedex}) {
                         Text("View Pokedex")
                             .font(.headline)
+                            .fontWeight(.bold)
+                            .foregroundColor(.white)
+                            .frame(width: 240, height: 50)
+                            .background(.ultraThinMaterial)
+                            .cornerRadius(15)
+                            .overlay(
+                                RoundedRectangle(cornerRadius: 15)
+                                    .stroke(Color.white.opacity(0.4), lineWidth: 1)
+                            )
+                            .shadow(radius: 5)
                     }
                     /*HStack{
                         Image(systemName: "magnifyingglass.circle.fill")
