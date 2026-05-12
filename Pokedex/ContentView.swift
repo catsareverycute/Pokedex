@@ -23,13 +23,14 @@ struct ContentView: View {
             Image(.pokemonBackgrounds)
                 .resizable()
                 .ignoresSafeArea()
-                .frame(width: 410, height: 800)
+                .frame(width: 430, height: 800)
             switch currentScreen {
             case .start:
                 VStack {
                     Image(.pokemonLogo)
                         .resizable()
                         .scaledToFit()
+                        .padding()
                     
                     Button(action: {currentScreen = .capture}) {
                         Text("Capture Pokemon")
@@ -73,7 +74,10 @@ struct ContentView: View {
                 }
             case .capture:
                 Capture(currentScreen: $currentScreen, pokedex: pokedexManager)
+                    .padding(.horizontal)
+                    .padding(10)
             case .pokedex: PokedexView(currentScreen: $currentScreen, pokedex: pokedexManager)
+                    .padding(.horizontal)
             }
         }
     }
