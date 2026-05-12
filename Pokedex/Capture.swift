@@ -4,10 +4,10 @@ struct Capture: View {
     @Binding var currentScreen: AppScreen
     var pokedex: PokedexManager
     @State private var client = NetworkClient()
+    @State private var ballLoc = CGSize(width: 0, height: 575)
+    @State private var ballScale: CGFloat = 1.0
     @State private var animate = false
     @State private var buttonVisible = true
-    @State private var ballLoc = CGSize(width: 0, height: 575)
-    @State private var ballScale = 1.0
     @State private var capturing = false
     @State private var changeSize = false
     
