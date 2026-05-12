@@ -23,6 +23,7 @@ struct ContentView: View {
             Image(.pokemonBackgrounds)
                 .resizable()
                 .ignoresSafeArea()
+                .frame(width: 410, height: 800)
             switch currentScreen {
             case .start:
                 VStack {
