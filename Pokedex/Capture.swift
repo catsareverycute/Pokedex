@@ -62,21 +62,21 @@ struct Capture: View {
                             withAnimation(.easeInOut(duration: 0.5).delay(1.2)){
                                 ballLoc = CGSize(width: 0, height: 150)
                             }
-                            withAnimation(.easeInOut(duration: 0.3).delay(1.7)){
+                            withAnimation(.easeInOut(duration: 0.4).delay(1.7)){
                                 ballLoc = CGSize(width: 0, height: 320)
                             }
-                            withAnimation(.easeInOut(duration: 0.4).delay(2)){
-                                ballLoc = CGSize(width: 0, height: 260)
-                                capturing = true
+                            withAnimation(.easeInOut(duration: 0.4).delay(2.1)){
+                                ballLoc = CGSize(width: 0, height: 230)
                                 
                                 if let caughtPokemon = client.currentPokemon {
                                     pokedex.caughtPokemon.append(caughtPokemon)
                                 }
                             }
-                            withAnimation(.easeInOut(duration: 0.2).delay(2.3)){
-                                ballLoc = CGSize(width: 0, height: 300)
+                            withAnimation(.easeInOut(duration: 0.3).delay(2.5)){
+                                ballLoc = CGSize(width: 0, height: 280)
+                                capturing = true
                             }
-                            withAnimation(.easeInOut(duration: 0.4).delay(2.5)){
+                            withAnimation(.easeInOut(duration: 0.4).delay(2.9)){
                                 ballLoc = CGSize(width: 0, height: 400)
                             }
                         }))
