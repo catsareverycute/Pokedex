@@ -79,25 +79,22 @@ struct Capture: View {
                             withAnimation(.easeInOut(duration: 0.4).delay(2.9)){
                                 ballLoc = CGSize(width: 0, height: 400)
                             }
+                            Task {
+                                try? await Task.sleep(for: .seconds(3.3))
+                                await client.getRandomPokemon()
+                                capturing = false
+                                withAnimation(.spring()) {
+                                    ballLoc = CGSize(width: 0, height: 575)
+                                }
+                            }
                         }))
                 Spacer()
-                Button("Launch Pokemon") {
-                    Task {
-                        await client.getRandomPokemon()
-                        capturing = false
-                        ballLoc = CGSize(width: 0, height: 575)
-//                        buttonVisible = false
-                    }
-                }
-                .disabled(!buttonVisible)
-                .onAppear {
-                    Task {
-                        await client.getRandomPokemon()
-                    }
-                }
             }
-            .buttonStyle(.borderedProminent)
-            .padding(.bottom, 50)
+        }
+        .onAppear {
+            Task {
+                await client.getRandomPokemon()
+            }
         }
     }
     
