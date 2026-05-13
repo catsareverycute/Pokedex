@@ -5,11 +5,9 @@
 //  Created by Student on 4/29/26.
 //
 
-
-//POKEINFO UI
 import SwiftUI
 
-struct PokeInfo: View {
+struct PokedexInfo: View {
     let pokemon: PokemonData
     var body: some View {
         VStack(spacing: 20) {
@@ -26,8 +24,9 @@ struct PokeInfo: View {
             HStack {
                 ForEach(pokemon.types, id: \.type.name) { typeEntry in
                     Text(typeEntry.type.name.uppercased())
+                        .foregroundColor(.white)
                         .padding(8)
-                        .background(Color.blue.opacity(0.2))
+                        .background(typeEntry.type.name.pokemonTypeColor)
                         .clipShape(Capsule())
                 }
             }
@@ -55,7 +54,7 @@ struct PokeInfo: View {
 }
 
 #Preview {
-    PokeInfo(pokemon: PokemonData(
+    PokedexInfo(pokemon: PokemonData(
         name: "Pikachu",
         sprites: .init(front_default: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/25.png"),
         types: [

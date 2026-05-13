@@ -12,17 +12,34 @@ struct PokedexView: View {
     var pokedex: PokedexManager
 
     var body: some View {
-        NavigationStack {
-            List(pokedex.caughtPokemon, id: \.name) { pokemon in
-                NavigationLink(pokemon.name.capitalized) {
-                    PokeInfo(pokemon: pokemon)
+        ZStack {
+            VStack {
+                HStack {
+                    Button(action: { currentScreen = .start }) {
+                        Image(systemName: "chevron.left")
+                        Text("Back")
+                    }
+                    .padding()
+                    .background(.ultraThinMaterial)
+                    .cornerRadius(10)
+                    Spacer()
                 }
+                Spacer()
             }
-            .navigationTitle("Captured Pokemon")
-            .toolbar {
-                ToolbarItem(placement: .topBarLeading) {
-                    Button("Home") {
-                        currentScreen = .start
+            .zIndex(1)
+            
+            NavigationStack {
+                List(pokedex.caughtPokemon, id: \.name) { pokemon in
+                    NavigationLink(pokemon.name.capitalized) {
+                        PokeInfo(pokemon: pokemon)
+                    }
+                }
+                .navigationTitle("Captured Pokemon")
+                .toolbar {
+                    ToolbarItem(placement: .topBarLeading) {
+                        Button("Home") {
+                            currentScreen = .start
+                        }
                     }
                 }
             }
