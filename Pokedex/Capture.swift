@@ -5,11 +5,10 @@ struct Capture: View {
     var pokedex: PokedexManager
     @State private var client = NetworkClient()
     @State private var ballLoc = CGSize(width: 0, height: 575)
-    @State private var ballScale: CGFloat = 1.0
+    @State private var ballScale: CGFloat = 1
     @State private var animate = false
     @State private var buttonVisible = true
     @State private var capturing = false
-    @State private var changeSize = false
     
     var body: some View {
         ZStack {
@@ -49,37 +48,38 @@ struct Capture: View {
             VStack {
                 Image(.pokeball)
                     .resizable()
+                    .frame(width: 100, height: 100)
                     .scaledToFit()
-//                    .scaleEffect(imageScale)
-                    .frame(width: changeSize ? 80 : 100)
+                    .scaleEffect(ballScale)
                     .offset(ballLoc)
                     .gesture(DragGesture(minimumDistance: 30, coordinateSpace: .local)
                         .onEnded({ value in
                             withAnimation(.easeInOut(duration: 0.5)){
-                                ballLoc = CGSize(width: 0, height: 100)
+                                ballScale = 0.8
+                                ballLoc = CGSize(width: 0, height: 80)
                             }
-                            withAnimation(.easeInOut(duration: 0.6).delay(0.5)){
-                                changeSize = true
-                                ballLoc = CGSize(width: 0, height: 300)
+                            withAnimation(.easeInOut(duration: 0.5).delay(0.5)){
+                                ballScale = 0.7
+                                ballLoc = CGSize(width: 0, height: 290)
                             }
-                            withAnimation(.easeInOut(duration: 0.5).delay(1.2)){
+                            withAnimation(.easeInOut(duration: 0.45).delay(1)){
                                 ballLoc = CGSize(width: 0, height: 150)
                             }
-                            withAnimation(.easeInOut(duration: 0.4).delay(1.7)){
-                                ballLoc = CGSize(width: 0, height: 320)
+                            withAnimation(.easeInOut(duration: 0.4).delay(1.45)){
+                                ballLoc = CGSize(width: 0, height: 290)
                             }
-                            withAnimation(.easeInOut(duration: 0.4).delay(2.1)){
+                            withAnimation(.easeInOut(duration: 0.4).delay(1.9)){
                                 ballLoc = CGSize(width: 0, height: 230)
                                 
                                 if let caughtPokemon = client.currentPokemon {
                                     pokedex.caughtPokemon.append(caughtPokemon)
                                 }
                             }
-                            withAnimation(.easeInOut(duration: 0.3).delay(2.4)){
-                                ballLoc = CGSize(width: 0, height: 280)
+                            withAnimation(.easeInOut(duration: 0.4).delay(2.4)){
+                                ballLoc = CGSize(width: 0, height: 290)
                                 capturing = true
                             }
-                            withAnimation(.easeInOut(duration: 0.4).delay(2.7)){
+                            withAnimation(.easeInOut(duration: 0.4).delay(2.8)){
                                 ballLoc = CGSize(width: 0, height: 400)
                                 buttonVisible = true
                             }
@@ -87,7 +87,7 @@ struct Capture: View {
                 Spacer()
                 Button("Launch Pokemon") {
                     Task {
-                        changeSize = false
+                        ballScale = 1.0
                         await client.getRandomPokemon()
                         capturing = false
                         ballLoc = CGSize(width: 0, height: 575)
