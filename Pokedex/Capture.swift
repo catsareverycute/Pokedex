@@ -6,6 +6,7 @@ struct Capture: View {
     @State private var client = NetworkClient()
     @State private var ballLoc = CGSize(width: 0, height: 575)
     @State private var ballScale: CGFloat = 1
+    @State private var ballAngle = 0.0
     @State private var animate = false
     @State private var buttonVisible = true
     @State private var capturing = false
@@ -51,6 +52,7 @@ struct Capture: View {
                     .frame(width: 100, height: 100)
                     .scaledToFit()
                     .scaleEffect(ballScale)
+                    .rotationEffect(.degrees(ballAngle))
                     .offset(ballLoc)
                     .gesture(DragGesture(minimumDistance: 30, coordinateSpace: .local)
                         .onEnded({ value in
@@ -79,8 +81,23 @@ struct Capture: View {
                                 ballLoc = CGSize(width: 0, height: 290)
                                 capturing = true
                             }
-                            withAnimation(.easeInOut(duration: 0.4).delay(2.8)){
+                            withAnimation(.easeInOut(duration: 0.4).delay(2.95)){
                                 ballLoc = CGSize(width: 0, height: 400)
+                            }
+                            withAnimation(.smooth(duration: 0.3).delay(3.35)){
+                                ballAngle = -30
+                            }
+                            withAnimation(.smooth(duration: 0.3).delay(3.65)){
+                                ballAngle = 15
+                            }
+                            withAnimation(.smooth(duration: 0.3).delay(3.95)){
+                                ballAngle = -15
+                            }
+                            withAnimation(.smooth(duration: 0.3).delay(4.25)){
+                                ballAngle = 20
+                            }
+                            withAnimation(.smooth(duration: 0.3).delay(4.55)){
+                                ballAngle = 0
                                 buttonVisible = true
                             }
                         }))
