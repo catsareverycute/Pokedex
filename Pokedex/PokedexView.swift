@@ -31,7 +31,7 @@ struct PokedexView: View {
             NavigationStack {
                 List(pokedex.caughtPokemon, id: \.name) { pokemon in
                     NavigationLink(pokemon.name.capitalized) {
-                        PokeInfo(pokemon: pokemon)
+                        PokedexInfo(pokemon: pokemon)
                     }
                 }
                 .navigationTitle("Captured Pokemon")
