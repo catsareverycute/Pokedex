@@ -8,7 +8,6 @@ struct Capture: View {
     @State private var ballScale: CGFloat = 1
     @State private var ballAngle = 0.0
     @State private var animate = false
-    @State private var buttonVisible = true
     @State private var capturing = false
     
     var body: some View {
@@ -56,9 +55,6 @@ struct Capture: View {
                     .offset(ballLoc)
                     .gesture(DragGesture(minimumDistance: 30, coordinateSpace: .local)
                         .onEnded({ value in
-                            withAnimation(.easeInOut(duration: 0.4)){
-                                buttonVisible = false
-                            }
                             withAnimation(.easeInOut(duration: 0.5)){
                                 ballScale = 0.8
                                 ballLoc = CGSize(width: 0, height: 80)
@@ -84,41 +80,35 @@ struct Capture: View {
                                 ballLoc = CGSize(width: 0, height: 290)
                                 capturing = true
                             }
-                            withAnimation(.easeInOut(duration: 0.4).delay(2.25)){
+                            withAnimation(.easeInOut(duration: 0.4).delay(2.15)){
                                 ballLoc = CGSize(width: 0, height: 400)
                             }
                             withAnimation(.smooth(duration: 0.3).delay(3)){
                                 ballAngle = -30
                             }
-                            withAnimation(.smooth(duration: 0.3).delay(3.9)){
+                            withAnimation(.smooth(duration: 0.3).delay(3.3)){
                                 ballAngle = 20
                             }
-                            withAnimation(.smooth(duration: 0.3).delay(4.2)){
+                            withAnimation(.smooth(duration: 0.3).delay(3.6)){
                                 ballAngle = 0
-                                buttonVisible = true
                             }
+                            Task{
+                                try? await Task.sleep(for: .seconds(4))
+                                await client.getRandomPokemon()
+                                capturing = false
+                                withAnimation(.spring()) {
+                                    ballLoc = CGSize(width: 0, height: 575)
+                                }
+                            }
+                            
                         }))
                 Spacer()
-                Button("Launch Pokemon") {
-                    Task {
-                        ballScale = 1.0
-                        await client.getRandomPokemon()
-                        capturing = false
-                        ballLoc = CGSize(width: 0, height: 575)
-                        withAnimation(.easeInOut(duration: 0.4)){
-                            buttonVisible = false
-                        }
-                    }
-                }
-                .disabled(!buttonVisible)
-                .onAppear {
-                    Task {
-                        await client.getRandomPokemon()
-                    }
-                }
             }
-            .buttonStyle(.borderedProminent)
-            .padding(.bottom, 50)
+        }
+        .onAppear {
+            Task {
+                await client.getRandomPokemon()
+            }
         }
     }
     
