@@ -56,47 +56,44 @@ struct Capture: View {
                     .offset(ballLoc)
                     .gesture(DragGesture(minimumDistance: 30, coordinateSpace: .local)
                         .onEnded({ value in
+                            withAnimation(.easeInOut(duration: 0.4)){
+                                buttonVisible = false
+                            }
                             withAnimation(.easeInOut(duration: 0.5)){
                                 ballScale = 0.8
                                 ballLoc = CGSize(width: 0, height: 80)
                             }
-                            withAnimation(.easeInOut(duration: 0.5).delay(0.5)){
+                            withAnimation(.linear(duration: 0.3).delay(0.5)){
                                 ballScale = 0.7
                                 ballLoc = CGSize(width: 0, height: 290)
                             }
-                            withAnimation(.easeInOut(duration: 0.45).delay(1)){
+                            withAnimation(.easeInOut(duration: 0.45).delay(0.8)){
                                 ballLoc = CGSize(width: 0, height: 150)
                             }
-                            withAnimation(.easeInOut(duration: 0.4).delay(1.45)){
+                            withAnimation(.linear(duration: 0.2).delay(1.25)){
                                 ballLoc = CGSize(width: 0, height: 290)
                             }
-                            withAnimation(.easeInOut(duration: 0.4).delay(1.9)){
+                            withAnimation(.easeInOut(duration: 0.4).delay(1.45)){
                                 ballLoc = CGSize(width: 0, height: 230)
                                 
                                 if let caughtPokemon = client.currentPokemon {
                                     pokedex.caughtPokemon.append(caughtPokemon)
                                 }
                             }
-                            withAnimation(.easeInOut(duration: 0.4).delay(2.4)){
+                            withAnimation(.linear(duration: 0.3).delay(1.85)){
                                 ballLoc = CGSize(width: 0, height: 290)
                                 capturing = true
                             }
-                            withAnimation(.easeInOut(duration: 0.4).delay(2.95)){
+                            withAnimation(.easeInOut(duration: 0.4).delay(2.25)){
                                 ballLoc = CGSize(width: 0, height: 400)
                             }
-                            withAnimation(.smooth(duration: 0.3).delay(3.35)){
+                            withAnimation(.smooth(duration: 0.3).delay(3)){
                                 ballAngle = -30
                             }
-                            withAnimation(.smooth(duration: 0.3).delay(3.65)){
-                                ballAngle = 15
-                            }
-                            withAnimation(.smooth(duration: 0.3).delay(3.95)){
-                                ballAngle = -15
-                            }
-                            withAnimation(.smooth(duration: 0.3).delay(4.25)){
+                            withAnimation(.smooth(duration: 0.3).delay(3.9)){
                                 ballAngle = 20
                             }
-                            withAnimation(.smooth(duration: 0.3).delay(4.55)){
+                            withAnimation(.smooth(duration: 0.3).delay(4.2)){
                                 ballAngle = 0
                                 buttonVisible = true
                             }
