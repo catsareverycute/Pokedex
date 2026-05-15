@@ -15,6 +15,7 @@ struct PokemonData: Codable {
     let height: Int
     let weight: Int
     let base_experience: Int
+    let abilities: [AbilityElement]
    
     var heightInMeters: Double { Double(height) / 10.0 }
     var weightInKilograms: Double { Double(weight) / 10.0 }
@@ -29,6 +30,11 @@ struct PokemonData: Codable {
     
     struct Species: Codable {
         let name: String
+    }
+    
+    struct AbilityElement: Codable {
+        let ability: Species
+        let is_hidden: Bool
     }
 }
 

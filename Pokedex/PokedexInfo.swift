@@ -48,6 +48,21 @@ struct PokedexInfo: View {
                     Text("Base XP").font(.caption).foregroundColor(.gray)
                 }
             }
+            VStack() {
+                Text("Abilities")
+                    .font(.headline)
+                
+                HStack {
+                    ForEach(pokemon.abilities, id: \.ability.name) { entry in
+                        Text(entry.ability.name.capitalized)
+                            .padding(.horizontal, 10)
+                            .padding(.vertical, 5)
+                            .background(Color.gray.opacity(0.2))
+                            .clipShape(Capsule())
+                            .opacity(entry.is_hidden ? 0.6 : 1.0)
+                    }
+                }
+            }
             .padding()
         }
     }
@@ -62,6 +77,8 @@ struct PokedexInfo: View {
         ],
         height: 4,
         weight: 60,
-        base_experience: 112
+        base_experience: 112,
+        abilities: [.init(ability: .init(name: "static"), is_hidden: false),
+        .init(ability: .init(name: "lightning-rod"), is_hidden: true)]
     ))
 }
