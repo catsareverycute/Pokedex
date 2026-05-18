@@ -73,7 +73,9 @@ struct Capture: View {
                                 ballLoc = CGSize(width: 0, height: 230)
                                 
                                 if let caughtPokemon = client.currentPokemon {
-                                    pokedex.caughtPokemon.append(caughtPokemon)
+                                    if !pokedex.caughtPokemon.contains(where: { $0.name == caughtPokemon.name }) {
+                                        pokedex.caughtPokemon.append(caughtPokemon)
+                                    }
                                 }
                             }
                             withAnimation(.linear(duration: 0.3).delay(1.85)){

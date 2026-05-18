@@ -10,47 +10,54 @@ import SwiftUI
 struct PokedexInfo: View {
     let pokemon: PokemonData
     var body: some View {
-        VStack(spacing: 20) {
+        VStack(spacing: 24) {
             AsyncImage(url: URL(string: pokemon.sprites.front_default)) { image in
                 image.resizable().scaledToFit()
             } placeholder: {
                 ProgressView()
             }
-            .frame(width: 200, height: 200)
+            .frame(width: 220, height: 220)
             
             Text(pokemon.name.capitalized)
                 .font(.largeTitle).bold()
             
-            HStack {
+            HStack(spacing: 12){
                 ForEach(pokemon.types, id: \.type.name) { typeEntry in
                     Text(typeEntry.type.name.uppercased())
+                        .fontWeight(.semibold)
                         .foregroundColor(.white)
-                        .padding(8)
+                        .padding(.horizontal, 14)
+                        .padding(.vertical, 8)
                         .background(typeEntry.type.name.pokemonTypeColor)
                         .clipShape(Capsule())
                 }
             }
             
-            HStack(spacing: 40) {
-                VStack {
+            HStack(spacing: 30) {
+                VStack(spacing: 6){
                     Text("\(pokemon.heightInMeters, specifier: "%.1f")m")
                         .font(.headline)
                     Text("Height").font(.caption).foregroundColor(.gray)
                 }
-                VStack {
+                VStack(spacing: 6){
                     Text("\(pokemon.weightInKilograms, specifier: "%.1f")kg")
                         .font(.headline)
                     Text("Weight").font(.caption).foregroundColor(.gray)
                 }
-                VStack {
+                VStack(spacing: 6){
                     Text("\(pokemon.base_experience)")
                         .font(.headline)
                     Text("Base XP").font(.caption).foregroundColor(.gray)
                 }
             }
-            VStack() {
+            .padding()
+            .frame(maxWidth: .infinity)
+            .background(.ultraThinMaterial)
+            
+            VStack(spacing: 14) {
                 Text("Abilities")
-                    .font(.headline)
+                    .font(.title3)
+                    .fontWeight(.bold)
                 
                 HStack {
                     ForEach(pokemon.abilities, id: \.ability.name) { entry in
@@ -59,7 +66,7 @@ struct PokedexInfo: View {
                             .padding(.vertical, 5)
                             .background(Color.gray.opacity(0.2))
                             .clipShape(Capsule())
-                            .opacity(entry.is_hidden ? 0.6 : 1.0)
+                            .opacity(entry.is_hidden ? 0.7 : 1.0)
                     }
                 }
             }
