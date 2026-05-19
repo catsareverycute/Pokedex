@@ -62,4 +62,29 @@ extension String {
         default: return Color.gray
         }
     }
+    
+    var pokemonBgColor: Color {
+        switch self.lowercased() {
+        case "normal":   return Color(red: 0.82, green: 0.82, blue: 0.80)
+        case "fire":     return Color(red: 0.97, green: 0.82, blue: 0.55)
+        case "water":    return Color(red: 0.68, green: 0.78, blue: 0.88)
+        case "electric": return Color(red: 0.98, green: 0.90, blue: 0.70)
+        case "grass":    return Color(red: 0.78, green: 0.90, blue: 0.70)
+        case "ice":      return Color(red: 0.85, green: 0.93, blue: 0.95)
+        case "fighting": return Color(red: 0.78, green: 0.55, blue: 0.45)
+        case "poison":   return Color(red: 0.80, green: 0.65, blue: 0.80)
+        case "ground":   return Color(red: 0.90, green: 0.85, blue: 0.72)
+        case "flying":   return Color(red: 0.80, green: 0.75, blue: 0.88)
+        case "psychic":  return Color(red: 0.99, green: 0.75, blue: 0.70)
+        case "bug":      return Color(red: 0.80, green: 0.85, blue: 0.70)
+        case "rock":     return Color(red: 0.83, green: 0.78, blue: 0.65)
+        case "ghost":    return Color(red: 0.68, green: 0.65, blue: 0.78)
+        case "dragon":   return Color(red: 0.68, green: 0.67, blue: 0.88)
+        case "dark":     return Color(red: 0.65, green: 0.60, blue: 0.58)
+        case "steel":    return Color(red: 0.88, green: 0.88, blue: 0.93)
+        case "fairy":    return Color(red: 0.93, green: 0.80, blue: 0.88)
+        default:         return Color(red: 0.88, green: 0.86, blue: 0.88)
+        }
+    }
+
 }

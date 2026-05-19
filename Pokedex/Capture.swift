@@ -95,14 +95,16 @@ struct Capture: View {
                                 ballAngle = 0
                             }
                             Task{
+                                withAnimation(.spring().delay(4)) {
+                                    ballLoc = CGSize(width: 0, height: 575)
+                                    ballScale = 1
+                                }
                                 try? await Task.sleep(for: .seconds(4))
                                 await client.getRandomPokemon()
-                                capturing = false
-                                withAnimation(.spring()) {
-                                    ballLoc = CGSize(width: 0, height: 575)
+                                withAnimation(.smooth(duration: 0.3)){
+                                    capturing = false
                                 }
                             }
-                            
                         }))
                 Spacer()
             }
